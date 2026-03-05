@@ -1,119 +1,5 @@
-# smoketracker
+# SmokeTracker - Track your smoking habits. Take back control
 Tap your cigarettes, get stats
-**🇫🇷 Français**
-
-**SMOKETRACKER - Manuel d'utilisation**
-
-_Suivez vos habitudes tabagiques. Reprenez le contrôle._
-
-## **TABLE DES MATIÈRES**
-
-1\. Présentation
-
-2\. Démarrage rapide
-
-3\. Fonctions détaillées
-
-4\. Statistiques & Graphiques
-
-5\. Paramètres
-
-6\. Recommandation de mise en route
-
-# **1\. PRÉSENTATION**
-
-SmokeTracker est une application web progressive (PWA) installable sur l'écran d'accueil de votre smartphone. Elle vous permet d'enregistrer chaque cigarette fumée, de visualiser vos tendances et de prendre conscience de vos habitudes tabagiques.
-
-- Fonctionne hors-ligne (données stockées localement)
-- Installable sur Android, iOS, desktop
-- Aucun compte requis - vie privée garantie
-- 12 langues disponibles
-- Données 100% locales, jamais transmises
-
-# **2\. DÉMARRAGE RAPIDE**
-
-- Ouvrez l'app dans Chrome ou Safari
-- Appuyez sur le menu ⋮ puis "Ajouter à l'écran d'accueil"
-- Lancez l'app depuis l'icône installée
-- Appuyez sur le crâne ☠ à chaque cigarette fumée
-- Consultez vos stats avec STATS ▸
-
-# **3\. FONCTIONS DÉTAILLÉES**
-
-## **⊳ Bouton FUMER**
-
-Le bouton central (crâne ☠) enregistre instantanément une cigarette avec l'horodatage exact. Un retour haptique (vibration) confirme l'enregistrement sur mobile.
-
-## **⊳ Historique récent**
-
-La liste défilante affiche toutes les cigarettes enregistrées par ordre antéchronologique. Chaque entrée affiche : numéro, date/heure précise, et temps écoulé depuis la précédente.
-
-Actions sur une entrée :
-
-- Appuyer sur ✎ pour modifier la date/heure
-- Appuyer sur 🗑 pour supprimer l'entrée
-- Modifier permet de corriger une saisie rétroactive
-
-## **⊳ Données de démonstration**
-
-Au premier lancement, des données de démonstration sont générées automatiquement (8 jours, ~20 cig/jour) pour illustrer toutes les fonctions. Ces données sont fictives.
-
-# **4\. STATISTIQUES & GRAPHIQUES**
-
-## **⊳ Cartes de synthèse**
-
-- CIG 24H - total des cigarettes des dernières 24h
-- MOY HH:MM - intervalle moyen entre 2 cigarettes (72h)
-- MOY/JOUR - moyenne quotidienne sur 7 jours
-- PACKS/7J - nombre de paquets sur 7 jours (÷20)
-
-## **⊳ Graphique "Cigarettes par jour"**
-
-Barres colorées selon vos seuils personnalisés. Glisser (swipe) pour naviguer sur tout l'historique. Les barres vertes = en dessous du seuil bas, orange = intermédiaire, rouge = dépassement.
-
-## **⊳ Graphique "Intervalle moyen"**
-
-Affiche l'intervalle moyen hh:mm entre deux cigarettes successives pour chaque journée. Un intervalle plus long = meilleur contrôle.
-
-## **⊳ Graphique en secteurs - Répartition horaire**
-
-Montre la répartition moyenne de vos cigarettes sur 4 tranches horaires (00h-06h, 06h-12h, 12h-18h, 18h-00h), calculée sur les 7 derniers jours calendaires complets. Identifiez vos pics de consommation.
-
-# **5\. PARAMÈTRES**
-
-## **⊳ Seuils de couleur**
-
-Définissez vos propres seuils (cig/24h) pour les couleurs des barres du graphique. Appuyez sur ✓ Appliquer pour sauvegarder.
-
-## **⊳ Export / Import JSON**
-
-Exportez toutes vos données au format JSON pour sauvegarde ou transfert vers un autre appareil. L'import remplace les données existantes.
-
-## **⊳ Effacer une plage de dates**
-
-Sélectionnez une période (De → À) pour supprimer uniquement les cigarettes enregistrées dans cet intervalle. Utile pour supprimer les données de démonstration.
-
-## **⊳ Zone de danger - Réinitialisation**
-
-Efface toutes les données et remet les seuils par défaut. Action irréversible.
-
-# **6\. RECOMMANDATION DE MISE EN ROUTE**
-
-Lors du premier lancement, SmokeTracker génère automatiquement 8 jours de données fictives pour vous permettre de découvrir toutes les fonctions. Ces données n'ont aucune valeur personnelle.
-
-**⚠ Après une semaine d'utilisation réelle, supprimez les données de démonstration pour ne conserver que vos propres données.**
-
-### **✦ Procédure**
-
-- Utilisez l'app normalement pendant 7 jours en appuyant sur ☠ à chaque cigarette
-- Ouvrez Paramètres ⚙
-- Dans "Effacer plage de dates", saisissez la plage couvrant les 8 jours de démo
-- Appuyez sur 🗑 Supprimer cette plage
-- Vos données personnelles (7 derniers jours) restent intactes
-
-★ Conseil : notez la date d'installation pour identifier facilement la plage à effacer.
-
-★ À partir de ce moment, tous vos graphiques et statistiques reflètent uniquement votre consommation réelle.
 
 **🇬🇧 English**
 
@@ -229,6 +115,123 @@ On first launch, SmokeTracker automatically generates 8 days of fictional data t
 ★ Tip: note your installation date to easily identify the range to delete.
 
 ★ From that point on, all charts and statistics reflect only your real consumption.
+
+
+**🇫🇷 Français**
+
+**SMOKETRACKER - Manuel d'utilisation**
+
+_Suivez vos habitudes tabagiques. Reprenez le contrôle._
+
+## **TABLE DES MATIÈRES**
+
+1\. Présentation
+
+2\. Démarrage rapide
+
+3\. Fonctions détaillées
+
+4\. Statistiques & Graphiques
+
+5\. Paramètres
+
+6\. Recommandation de mise en route
+
+# **1\. PRÉSENTATION**
+
+SmokeTracker est une application web progressive (PWA) installable sur l'écran d'accueil de votre smartphone. Elle vous permet d'enregistrer chaque cigarette fumée, de visualiser vos tendances et de prendre conscience de vos habitudes tabagiques.
+
+- Fonctionne hors-ligne (données stockées localement)
+- Installable sur Android, iOS, desktop
+- Aucun compte requis - vie privée garantie
+- 12 langues disponibles
+- Données 100% locales, jamais transmises
+
+# **2\. DÉMARRAGE RAPIDE**
+
+- Ouvrez l'app dans Chrome ou Safari
+- Appuyez sur le menu ⋮ puis "Ajouter à l'écran d'accueil"
+- Lancez l'app depuis l'icône installée
+- Appuyez sur le crâne ☠ à chaque cigarette fumée
+- Consultez vos stats avec STATS ▸
+
+# **3\. FONCTIONS DÉTAILLÉES**
+
+## **⊳ Bouton FUMER**
+
+Le bouton central (crâne ☠) enregistre instantanément une cigarette avec l'horodatage exact. Un retour haptique (vibration) confirme l'enregistrement sur mobile.
+
+## **⊳ Historique récent**
+
+La liste défilante affiche toutes les cigarettes enregistrées par ordre antéchronologique. Chaque entrée affiche : numéro, date/heure précise, et temps écoulé depuis la précédente.
+
+Actions sur une entrée :
+
+- Appuyer sur ✎ pour modifier la date/heure
+- Appuyer sur 🗑 pour supprimer l'entrée
+- Modifier permet de corriger une saisie rétroactive
+
+## **⊳ Données de démonstration**
+
+Au premier lancement, des données de démonstration sont générées automatiquement (8 jours, ~20 cig/jour) pour illustrer toutes les fonctions. Ces données sont fictives.
+
+# **4\. STATISTIQUES & GRAPHIQUES**
+
+## **⊳ Cartes de synthèse**
+
+- CIG 24H - total des cigarettes des dernières 24h
+- MOY HH:MM - intervalle moyen entre 2 cigarettes (72h)
+- MOY/JOUR - moyenne quotidienne sur 7 jours
+- PACKS/7J - nombre de paquets sur 7 jours (÷20)
+
+## **⊳ Graphique "Cigarettes par jour"**
+
+Barres colorées selon vos seuils personnalisés. Glisser (swipe) pour naviguer sur tout l'historique. Les barres vertes = en dessous du seuil bas, orange = intermédiaire, rouge = dépassement.
+
+## **⊳ Graphique "Intervalle moyen"**
+
+Affiche l'intervalle moyen hh:mm entre deux cigarettes successives pour chaque journée. Un intervalle plus long = meilleur contrôle.
+
+## **⊳ Graphique en secteurs - Répartition horaire**
+
+Montre la répartition moyenne de vos cigarettes sur 4 tranches horaires (00h-06h, 06h-12h, 12h-18h, 18h-00h), calculée sur les 7 derniers jours calendaires complets. Identifiez vos pics de consommation.
+
+# **5\. PARAMÈTRES**
+
+## **⊳ Seuils de couleur**
+
+Définissez vos propres seuils (cig/24h) pour les couleurs des barres du graphique. Appuyez sur ✓ Appliquer pour sauvegarder.
+
+## **⊳ Export / Import JSON**
+
+Exportez toutes vos données au format JSON pour sauvegarde ou transfert vers un autre appareil. L'import remplace les données existantes.
+
+## **⊳ Effacer une plage de dates**
+
+Sélectionnez une période (De → À) pour supprimer uniquement les cigarettes enregistrées dans cet intervalle. Utile pour supprimer les données de démonstration.
+
+## **⊳ Zone de danger - Réinitialisation**
+
+Efface toutes les données et remet les seuils par défaut. Action irréversible.
+
+# **6\. RECOMMANDATION DE MISE EN ROUTE**
+
+Lors du premier lancement, SmokeTracker génère automatiquement 8 jours de données fictives pour vous permettre de découvrir toutes les fonctions. Ces données n'ont aucune valeur personnelle.
+
+**⚠ Après une semaine d'utilisation réelle, supprimez les données de démonstration pour ne conserver que vos propres données.**
+
+### **✦ Procédure**
+
+- Utilisez l'app normalement pendant 7 jours en appuyant sur ☠ à chaque cigarette
+- Ouvrez Paramètres ⚙
+- Dans "Effacer plage de dates", saisissez la plage couvrant les 8 jours de démo
+- Appuyez sur 🗑 Supprimer cette plage
+- Vos données personnelles (7 derniers jours) restent intactes
+
+★ Conseil : notez la date d'installation pour identifier facilement la plage à effacer.
+
+★ À partir de ce moment, tous vos graphiques et statistiques reflètent uniquement votre consommation réelle.
+
 
 **🇪🇸 Español**
 
