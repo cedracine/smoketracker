@@ -10,7 +10,7 @@
 <link rel="manifest" href="/smoketracker/manifest.json">
 <link rel="apple-touch-icon" sizes="192x192" href="/smoketracker/icon-192.png">
 <link rel="apple-touch-icon" sizes="512x512" href="/smoketracker/icon-512.png">
-<title>☠ SmokeTracker v9</title>
+<title>☠ SmokeTracker v10</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -1449,7 +1449,7 @@ const TRANSLATIONS = {
   vi: {
     appTitle:'☠ SMOKETRACKER',
     btnSmoke:'HÚT',
-    headerStats:'THỐNG KÊ ▸',
+    headerStats:'STATS ▸',
     recentHistory:'LỊCH SỬ GẦN ĐÂY',
     last24h:'CIG 24H QUA',
     totalCig24:'Tổng cig 24h qua',
@@ -2181,6 +2181,7 @@ document.getElementById('editModal').addEventListener('click', function(e) {
 
 // ===================== STATS =====================
 function openStats() {
+  history.pushState({ panel: 'stats' }, '');
   document.getElementById('statsPanel').classList.add('open');
   renderStatsCards();
   drawCharts();
@@ -2653,6 +2654,7 @@ function showToast(msg) {
 
 // ===================== SETTINGS =====================
 function openSettings() {
+  history.pushState({ panel: 'settings' }, '');
   document.getElementById('settingsPanel').classList.add('open');
   renderThresholdGrid();
   renderLangGrid();
@@ -3077,7 +3079,7 @@ function initApp() {
   }
   setInterval(update, 60000);
 }
-// v9 - robust init with multiple safety nets
+// v10 - robust init with multiple safety nets
 let _initDone = false;
 function runInit() {
   if (_initDone) return;
@@ -3089,7 +3091,25 @@ if (document.readyState === 'loading') {
 } else {
   runInit();
 }
-window.addEventListener('load', runInit);
+window.addEventListener('load', () => {
+  runInit();
+  // Push baseline state so back button has somewhere to go from home
+  if (!history.state) history.replaceState({ panel: 'home' }, '');
+});
+
+// Android back button: close panels instead of exiting app
+window.addEventListener('popstate', (e) => {
+  // Close any open panel
+  const stats = document.getElementById('statsPanel');
+  const settings = document.getElementById('settingsPanel');
+  if (stats && stats.classList.contains('open')) {
+    stats.classList.remove('open');
+    history.pushState({ panel: 'home' }, '');
+  } else if (settings && settings.classList.contains('open')) {
+    settings.classList.remove('open');
+    history.pushState({ panel: 'home' }, '');
+  }
+});
 </script>
 
 <!-- MANUAL OVERLAY -->
