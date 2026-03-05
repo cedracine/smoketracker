@@ -688,7 +688,7 @@
       <div class="chart-hint">← glisser pour naviguer →</div>
     </div>
     <div class="chart-section">
-      <div class="chart-title"><span id="chartIntervalTitle"><span id="chartIntervalTitle">MOY. HH:MM ENTRE 2 CIG PAR JOUR</span></span></div>
+      <div class="chart-title"><span id="chartIntervalTitle">MOY. HH:MM ENTRE 2 CIG PAR JOUR</span></div>
       <div class="chart-wrap" id="chartIntervalWrap">
         <canvas id="chartInterval" height="160"></canvas>
       </div>
@@ -697,7 +697,7 @@
 
     <!-- Pie chart: median cigs by time zone over 7 days -->
     <div class="chart-section">
-      <div class="chart-title">RÉPARTITION PAR TRANCHE HORAIRE <span style="opacity:0.45;font-size:9px;letter-spacing:1px;font-family:'Courier Prime',monospace;">MOY. / TRANCHE · 7J</span></div>
+      <div class="chart-title"><span id="chartPieTitle">RÉPARTITION PAR TRANCHE HORAIRE</span> <span id="chartPieSub" style="opacity:0.45;font-size:9px;letter-spacing:1px;font-family:'Courier Prime',monospace;">RÉP. PAR TRANCHE HORAIRE MOY 7J</span></div>
       <div class="pie-wrap">
         <canvas id="chartPie" width="260" height="260"></canvas>
         <div class="pie-legend" id="pieLegend"></div>
@@ -862,6 +862,12 @@ const TRANSLATIONS = {
     sub_before:'encore ${r} avant la moy.',
     sub_near:'proche de la moy. (${ref})',
     deltaLabel:'+${d} depuis préc.',
+  
+    zLabel1:'Doré < seuil 1',
+    zLabel2:'Bleu→Vert ≤ seuil 2',
+    zLabel3:'Vert→Orange ≤ seuil 3',
+    zLabel4:'Orange→Rouge ≤ seuil 4',
+    zLabel5:'Rouge→Violet ≤ seuil 5',
   },
 
   en: {
@@ -928,6 +934,12 @@ const TRANSLATIONS = {
     sub_before:'${r} before avg',
     sub_near:'near avg (${ref})',
     deltaLabel:'+${d} since prev.',
+  
+    zLabel1:'Gold < thresh 1',
+    zLabel2:'Blue→Green ≤ thresh 2',
+    zLabel3:'Green→Orange ≤ thresh 3',
+    zLabel4:'Orange→Red ≤ thresh 4',
+    zLabel5:'Red→Purple ≤ thresh 5',
   },
 
   es: {
@@ -994,6 +1006,12 @@ const TRANSLATIONS = {
     sub_before:'${r} antes del prom.',
     sub_near:'cerca del prom. (${ref})',
     deltaLabel:'+${d} desde ant.',
+  
+    zLabel1:'Oro < umbral 1',
+    zLabel2:'Azul→Verde ≤ umbral 2',
+    zLabel3:'Verde→Naranja ≤ umbral 3',
+    zLabel4:'Naranja→Rojo ≤ umbral 4',
+    zLabel5:'Rojo→Violeta ≤ umbral 5',
   },
 
   de: {
@@ -1060,6 +1078,12 @@ const TRANSLATIONS = {
     sub_before:'noch ${r} bis Durchschn.',
     sub_near:'nahe Durchschn. (${ref})',
     deltaLabel:'+${d} seit vorigem.',
+  
+    zLabel1:'Gold < Schwelle 1',
+    zLabel2:'Blau→Grün ≤ Schwelle 2',
+    zLabel3:'Grün→Orange ≤ Schwelle 3',
+    zLabel4:'Orange→Rot ≤ Schwelle 4',
+    zLabel5:'Rot→Lila ≤ Schwelle 5',
   },
 
   it: {
@@ -1126,6 +1150,12 @@ const TRANSLATIONS = {
     sub_before:'ancora ${r} alla media',
     sub_near:'vicino alla media (${ref})',
     deltaLabel:'+${d} dal prec.',
+  
+    zLabel1:'Oro < soglia 1',
+    zLabel2:'Blu→Verde ≤ soglia 2',
+    zLabel3:'Verde→Arancio ≤ soglia 3',
+    zLabel4:'Arancio→Rosso ≤ soglia 4',
+    zLabel5:'Rosso→Viola ≤ soglia 5',
   },
 
   pt: {
@@ -1192,6 +1222,12 @@ const TRANSLATIONS = {
     sub_before:'ainda ${r} para a média',
     sub_near:'perto da média (${ref})',
     deltaLabel:'+${d} desde ant.',
+  
+    zLabel1:'Ouro < limiar 1',
+    zLabel2:'Azul→Verde ≤ limiar 2',
+    zLabel3:'Verde→Laranja ≤ limiar 3',
+    zLabel4:'Laranja→Vermelho ≤ limiar 4',
+    zLabel5:'Vermelho→Roxo ≤ limiar 5',
   },
 
   ru: {
@@ -1258,6 +1294,12 @@ const TRANSLATIONS = {
     sub_before:'ещё ${r} до среднего',
     sub_near:'около среднего (${ref})',
     deltaLabel:'+${d} с пред.',
+  
+    zLabel1:'Золото < порог 1',
+    zLabel2:'Синий→Зелёный ≤ порог 2',
+    zLabel3:'Зелёный→Оранж ≤ порог 3',
+    zLabel4:'Оранж→Красный ≤ порог 4',
+    zLabel5:'Красный→Фиолет ≤ порог 5',
   },
 
   zh: {
@@ -1324,6 +1366,12 @@ const TRANSLATIONS = {
     sub_before:'还需${r}达均值',
     sub_near:'接近均值（${ref}）',
     deltaLabel:'+${d} 较上次.',
+  
+    zLabel1:'金色 < 阈值1',
+    zLabel2:'蓝→绿 ≤ 阈值2',
+    zLabel3:'绿→橙 ≤ 阈值3',
+    zLabel4:'橙→红 ≤ 阈值4',
+    zLabel5:'红→紫 ≤ 阈值5',
   },
 
   ja: {
@@ -1390,6 +1438,12 @@ const TRANSLATIONS = {
     sub_before:'あと${r}で平均',
     sub_near:'平均付近（${ref}）',
     deltaLabel:'+${d} 前回比.',
+  
+    zLabel1:'金 < 閾値1',
+    zLabel2:'青→緑 ≤ 閾値2',
+    zLabel3:'緑→橙 ≤ 閾値3',
+    zLabel4:'橙→赤 ≤ 閾値4',
+    zLabel5:'赤→紫 ≤ 閾値5',
   },
 
   vi: {
@@ -1456,6 +1510,12 @@ const TRANSLATIONS = {
     sub_before:'còn ${r} nữa đến tb.',
     sub_near:'gần tb. (${ref})',
     deltaLabel:'+${d} kể từ trước.',
+  
+    zLabel1:'Vàng < ngưỡng 1',
+    zLabel2:'Xanh→Lục ≤ ngưỡng 2',
+    zLabel3:'Lục→Cam ≤ ngưỡng 3',
+    zLabel4:'Cam→Đỏ ≤ ngưỡng 4',
+    zLabel5:'Đỏ→Tím ≤ ngưỡng 5',
   },
   th: {
     appTitle:'☠ SMOKETRACKER',
@@ -1521,6 +1581,12 @@ const TRANSLATIONS = {
     sub_before:'อีก ${r} ถึงค่าเฉลี่ย',
     sub_near:'ใกล้ค่าเฉลี่ย (${ref})',
     deltaLabel:'+${d} จากก่อนหน้า',
+  
+    zLabel1:'ทอง < ระดับ 1',
+    zLabel2:'น้ำเงิน→เขียว ≤ ระดับ 2',
+    zLabel3:'เขียว→ส้ม ≤ ระดับ 3',
+    zLabel4:'ส้ม→แดง ≤ ระดับ 4',
+    zLabel5:'แดง→ม่วง ≤ ระดับ 5',
   },
   km: {
     appTitle:'☠ SMOKETRACKER',
@@ -1586,6 +1652,12 @@ const TRANSLATIONS = {
     sub_before:'នៅ ${r} ទៀតដល់មធ្យម',
     sub_near:'ជិតមធ្យម (${ref})',
     deltaLabel:'+${d} ចាប់ពីមុន',
+  
+    zLabel1:'មាស < កម្រិត 1',
+    zLabel2:'ខៀវ→បៃតង ≤ កម្រិត 2',
+    zLabel3:'បៃតង→ទឹកក្រូច ≤ កម្រិត 3',
+    zLabel4:'ទឹកក្រូច→ក្រហម ≤ កម្រិត 4',
+    zLabel5:'ក្រហម→ស្វាយ ≤ កម្រិត 5',
   },
 };
 
@@ -1651,7 +1723,7 @@ function applyTranslations() {
   const exportBtn = document.getElementById('exportBtn');
   if (exportBtn) exportBtn.querySelector('span:last-child').textContent = t('exportBtn');
   const importBtn = document.getElementById('importBtnLabel');
-  if (importBtn) importBtn.querySelector('span:last-child').textContent = t('importBtn');
+  if (importBtn) { const sp = importBtn.querySelector('span:nth-child(2)'); if (sp) sp.textContent = t('importBtn'); }
   const deleteRangeTitle = document.getElementById('deleteRangeTitle');
   if (deleteRangeTitle) deleteRangeTitle.textContent = t('deleteRangeTitle');
   const labelFrom = document.getElementById('labelFrom');
@@ -1668,11 +1740,12 @@ function applyTranslations() {
   if (dangerDesc) dangerDesc.textContent = t('dangerDesc');
   const langTitle = document.getElementById('langTitle');
   if (langTitle) langTitle.textContent = t('langTitle');
-  // Threshold buttons
+  // Threshold buttons + re-render grid labels
   const btnDefault = document.getElementById('btnDefault');
   if (btnDefault) btnDefault.textContent = t('btnDefault');
   const btnApply = document.getElementById('btnApply');
   if (btnApply) btnApply.textContent = t('btnApply');
+  renderThresholdGrid();
   // Modal
   const modalTitleEl = document.getElementById('modalTitle');
   if (modalTitleEl) modalTitleEl.textContent = t('modalTitle');
@@ -2588,11 +2661,11 @@ function openSettings() {
 function closeSettings() { document.getElementById('settingsPanel').classList.remove('open'); }
 
 const ZONE_DEFS = [
-  { key: 't1', color: '#ffd700',  label: 'Doré  < seuil 1' },
-  { key: 't2', color: '#52b788',  label: 'Bleu→Vert  ≤ seuil 2' },
-  { key: 't3', color: '#ff9800',  label: 'Vert→Orange  ≤ seuil 3' },
-  { key: 't4', color: '#ff2222',  label: 'Orange→Rouge  ≤ seuil 4' },
-  { key: 't5', color: '#7b00d4',  label: 'Rouge→Violet  ≤ seuil 5' },
+  { key: 't1', color: '#ffd700',  labelKey: 'zLabel1' },
+  { key: 't2', color: '#52b788',  labelKey: 'zLabel2' },
+  { key: 't3', color: '#ff9800',  labelKey: 'zLabel3' },
+  { key: 't4', color: '#ff2222',  labelKey: 'zLabel4' },
+  { key: 't5', color: '#7b00d4',  labelKey: 'zLabel5' },
 ];
 
 function renderThresholdGrid() {
@@ -2603,7 +2676,7 @@ function renderThresholdGrid() {
     row.className = 'threshold-row';
     row.innerHTML = `
       <div class="threshold-swatch" style="color:${z.color};background:${z.color}22;"></div>
-      <div class="threshold-label">${z.label}</div>
+      <div class="threshold-label">${t(z.labelKey)}</div>
       <input class="threshold-input" type="number" min="1" max="200"
              id="thresh-${z.key}" value="${thresholds[z.key]}">
     `;
@@ -2746,63 +2819,130 @@ const MANUAL_CONTENT = {
 <div class="man-tip">★ Note your install date to easily find the range to delete.</div>`,
 
   es: `<div class="man-h1">1 · PRESENTACIÓN</div>
-<p class="man-p">SmokeTracker es una PWA instalable en la pantalla de inicio. Sin cuenta, sin nube, datos 100% locales.</p>
+<p class="man-p">SmokeTracker es una PWA instalable en la pantalla de inicio. Registra cada cigarrillo, visualiza tendencias — sin cuenta, sin nube, datos 100% locales.</p>
+<ul class="man-ul"><li>Funciona sin conexión</li><li>Instalable en Android / iOS / escritorio</li><li>12 idiomas disponibles</li></ul>
 <div class="man-h1">2 · INICIO RÁPIDO</div>
-<ol class="man-ol"><li>Abrir en Chrome o Safari</li><li>Menú ⋮ → "Añadir a pantalla de inicio"</li><li>Pulsar ☠ en cada cigarrillo</li><li>Ver STATS ▸</li></ol>
+<ol class="man-ol"><li>Abrir en Chrome o Safari</li><li>Menú ⋮ → "Añadir a pantalla de inicio"</li><li>Pulsar ☠ cada vez que fumes</li><li>Ver STATS ▸ para gráficos</li></ol>
 <div class="man-h1">3 · FUNCIONES</div>
-<p class="man-p">Botón ☠ → registro instantáneo + vibración. Historial: ✎ editar / ✕ eliminar. Demo: 8 días generados automáticamente.</p>
+<p class="man-p"><b>Botón ☠</b> — registro con marca de tiempo exacta + vibración táctil. <b>Historial</b> — ✎ editar / ✕ eliminar cada entrada.</p>
+<p class="man-p"><b>Datos demo</b> — 8 días (~20 cig/día) generados automáticamente al primer inicio para mostrar todas las funciones.</p>
 <div class="man-h1">4 · ESTADÍSTICAS</div>
-<p class="man-p">CIG 24H · MED HH:MM · MED/DÍA · CAJET/7D — Deslizar barras para navegar. Circular: distribución horaria 7 días.</p>
-<div class="man-h1">5 · RECOMENDACIÓN DE INICIO</div>
-<div class="man-warn">⚠ Tras una semana de uso real, elimina los 8 días demo para conservar solo tus datos.</div>`,
+<ul class="man-ul"><li><b>CIG 24H</b> — total últimas 24h</li><li><b>MED HH:MM</b> — intervalo promedio (72h)</li><li><b>MED/DÍA</b> — promedio diario 7d</li><li><b>CAJET/7D</b> — cajetillas consumidas (÷20)</li></ul>
+<p class="man-p">Desliza los gráficos de barras para navegar. El gráfico circular muestra la distribución horaria de los últimos 7 días completos.</p>
+<div class="man-h1">5 · CONFIGURACIÓN</div>
+<p class="man-p">Idioma · Umbrales de color · Exportar/Importar JSON · Eliminar rango · Zona de peligro</p>
+<div class="man-h1">6 · EMPEZAR</div>
+<div class="man-warn">⚠ Tras una semana de uso real, elimina los 8 días demo para conservar solo tus datos.</div>
+<ol class="man-ol"><li>Usa normalmente 7 días (☠ por cigarrillo)</li><li>Ajustes ⚙ → "Eliminar rango de fechas"</li><li>Introduce los 8 días demo → 🗑 Eliminar</li><li>Tus 7 días personales quedan intactos</li></ol>
+<div class="man-tip">★ Anota la fecha de instalación para encontrar fácilmente el rango a eliminar.</div>`,
 
-  de: `<div class="man-h1">1 · ÜBERBLICK</div>
-<p class="man-p">SmokeTracker ist eine PWA für den Startbildschirm. Ohne Konto, ohne Cloud, 100% lokale Daten.</p>
+  de: `<div class="man-h1">1 · ÜBERSICHT</div>
+<p class="man-p">SmokeTracker ist eine PWA, die auf dem Startbildschirm installierbar ist. Jede Zigarette erfassen, Trends visualisieren — kein Konto, keine Cloud, Daten 100% lokal.</p>
+<ul class="man-ul"><li>Funktioniert offline</li><li>Installierbar auf Android / iOS / Desktop</li><li>12 Sprachen verfügbar</li></ul>
 <div class="man-h1">2 · SCHNELLSTART</div>
-<ol class="man-ol"><li>Chrome oder Safari öffnen</li><li>Menü ⋮ → "Zum Startbildschirm hinzufügen"</li><li>☠ bei jeder Zigarette antippen</li><li>STATS ▸ für Diagramme</li></ol>
+<ol class="man-ol"><li>In Chrome oder Safari öffnen</li><li>Menü ⋮ → „Zum Startbildschirm hinzufügen"</li><li>☠ bei jeder Zigarette tippen</li><li>STATS ▸ für Diagramme</li></ol>
 <div class="man-h1">3 · FUNKTIONEN</div>
-<p class="man-p">☠-Taste → Aufzeichnung + Vibration. Verlauf: ✎ bearbeiten / ✕ löschen. Demo: 8 Tage automatisch generiert.</p>
+<p class="man-p"><b>☠ Schaltfläche</b> — Aufzeichnung mit genauem Zeitstempel + Haptik. <b>Verlauf</b> — ✎ bearbeiten / ✕ jeden Eintrag löschen.</p>
+<p class="man-p"><b>Demo-Daten</b> — 8 Tage (~20 Zig./Tag) beim ersten Start automatisch erstellt, um alle Funktionen zu zeigen.</p>
 <div class="man-h1">4 · STATISTIKEN</div>
-<p class="man-p">ZIG 24H · Ø HH:MM · Ø/TAG · PÄCK/7T — Wischen zum Navigieren. Kreisdiagramm: stündliche Verteilung 7 Tage.</p>
-<div class="man-h1">5 · EINRICHTUNGSEMPFEHLUNG</div>
-<div class="man-warn">⚠ Nach einer Woche: 8 Demo-Tage löschen, um nur persönliche Daten zu behalten.</div>`,
+<ul class="man-ul"><li><b>ZIG 24H</b> — Gesamt letzte 24h</li><li><b>Ø HH:MM</b> — Durchschnittsintervall (72h)</li><li><b>Ø/TAG</b> — Tagesdurchschnitt 7T</li><li><b>PÄCK/7T</b> — verbrauchte Päckchen (÷20)</li></ul>
+<p class="man-p">Balkendiagramme zum Navigieren wischen. Kreisdiagramm zeigt die stündliche Verteilung der letzten 7 vollständigen Tage.</p>
+<div class="man-h1">5 · EINSTELLUNGEN</div>
+<p class="man-p">Sprache · Farbschwellen · JSON exportieren/importieren · Zeitraum löschen · Gefahrenzone</p>
+<div class="man-h1">6 · EINSTIEG</div>
+<div class="man-warn">⚠ Nach einer Woche echter Nutzung die 8 Demo-Tage löschen, damit nur persönliche Daten bleiben.</div>
+<ol class="man-ol"><li>7 Tage normal nutzen (☠ pro Zigarette)</li><li>Einstellungen ⚙ → „Datumsbereich löschen"</li><li>Die 8 Demo-Tage eingeben → 🗑 Löschen</li><li>Die 7 persönlichen Tage bleiben erhalten</li></ol>
+<div class="man-tip">★ Installationsdatum notieren, um den zu löschenden Bereich leicht zu finden.</div>`,
 
   it: `<div class="man-h1">1 · PRESENTAZIONE</div>
-<p class="man-p">SmokeTracker è una PWA installabile sulla schermata home. Senza account, senza cloud, dati 100% locali.</p>
+<p class="man-p">SmokeTracker è una PWA installabile nella schermata iniziale. Registra ogni sigaretta, visualizza tendenze — nessun account, nessun cloud, dati 100% locali.</p>
+<ul class="man-ul"><li>Funziona offline</li><li>Installabile su Android / iOS / desktop</li><li>12 lingue disponibili</li></ul>
 <div class="man-h1">2 · AVVIO RAPIDO</div>
-<ol class="man-ol"><li>Aprire in Chrome o Safari</li><li>Menu ⋮ → "Aggiungi a schermata Home"</li><li>Premere ☠ ad ogni sigaretta</li><li>STATS ▸ per i grafici</li></ol>
+<ol class="man-ol"><li>Aprire in Chrome o Safari</li><li>Menu ⋮ → "Aggiungi alla schermata iniziale"</li><li>Toccare ☠ ad ogni sigaretta</li><li>Vedere STATS ▸ per i grafici</li></ol>
 <div class="man-h1">3 · FUNZIONI</div>
-<p class="man-p">Pulsante ☠ → registrazione istantanea + vibrazione. Cronologia: ✎ modifica / ✕ elimina. Demo: 8 giorni generati automaticamente.</p>
-<div class="man-h1">4 · RACCOMANDAZIONE DI AVVIO</div>
-<div class="man-warn">⚠ Dopo una settimana: elimina gli 8 giorni demo per conservare solo i tuoi dati.</div>`,
+<p class="man-p"><b>Pulsante ☠</b> — registra con timestamp esatto + feedback aptico. <b>Cronologia</b> — ✎ modifica / ✕ elimina ogni voce.</p>
+<p class="man-p"><b>Dati demo</b> — 8 giorni (~20 sig./giorno) generati automaticamente al primo avvio per mostrare tutte le funzioni.</p>
+<div class="man-h1">4 · STATISTICHE</div>
+<ul class="man-ul"><li><b>SIG 24H</b> — totale ultime 24h</li><li><b>MED HH:MM</b> — intervallo medio (72h)</li><li><b>MED/GG</b> — media giornaliera 7g</li><li><b>PACH/7G</b> — pacchetti consumati (÷20)</li></ul>
+<p class="man-p">Scorri i grafici a barre per navigare. Il grafico a torta mostra la distribuzione oraria degli ultimi 7 giorni completi.</p>
+<div class="man-h1">5 · IMPOSTAZIONI</div>
+<p class="man-p">Lingua · Soglie colore · Esporta/Importa JSON · Elimina intervallo · Zona pericolo</p>
+<div class="man-h1">6 · INIZIARE</div>
+<div class="man-warn">⚠ Dopo una settimana di utilizzo reale, elimina gli 8 giorni demo per conservare solo i tuoi dati.</div>
+<ol class="man-ol"><li>Usa normalmente per 7 giorni (☠ per sigaretta)</li><li>Impostazioni ⚙ → "Elimina intervallo date"</li><li>Inserisci gli 8 giorni demo → 🗑 Elimina</li><li>I tuoi 7 giorni personali rimangono intatti</li></ol>
+<div class="man-tip">★ Segna la data di installazione per trovare facilmente l'intervallo da eliminare.</div>`,
 
   pt: `<div class="man-h1">1 · APRESENTAÇÃO</div>
-<p class="man-p">SmokeTracker é uma PWA instalável na tela inicial. Sem conta, sem nuvem, dados 100% locais.</p>
+<p class="man-p">SmokeTracker é um PWA instalável na tela inicial. Registre cada cigarro, visualize tendências — sem conta, sem nuvem, dados 100% locais.</p>
+<ul class="man-ul"><li>Funciona offline</li><li>Instalável no Android / iOS / desktop</li><li>12 idiomas disponíveis</li></ul>
 <div class="man-h1">2 · INÍCIO RÁPIDO</div>
-<ol class="man-ol"><li>Abrir no Chrome ou Safari</li><li>Menu ⋮ → "Adicionar ao ecrã inicial"</li><li>Tocar em ☠ a cada cigarro</li><li>STATS ▸ para gráficos</li></ol>
-<div class="man-h1">3 · RECOMENDAÇÃO DE INÍCIO</div>
-<div class="man-warn">⚠ Após uma semana: elimine os 8 dias de demo para manter apenas os seus dados.</div>`,
+<ol class="man-ol"><li>Abrir no Chrome ou Safari</li><li>Menu ⋮ → "Adicionar à tela inicial"</li><li>Tocar ☠ a cada cigarro</li><li>Ver STATS ▸ para gráficos</li></ol>
+<div class="man-h1">3 · FUNCIONALIDADES</div>
+<p class="man-p"><b>Botão ☠</b> — registo com timestamp exato + feedback tátil. <b>Histórico</b> — ✎ editar / ✕ apagar cada entrada.</p>
+<p class="man-p"><b>Dados demo</b> — 8 dias (~20 cig./dia) gerados automaticamente no primeiro lançamento para mostrar todas as funções.</p>
+<div class="man-h1">4 · ESTATÍSTICAS</div>
+<ul class="man-ul"><li><b>CIG 24H</b> — total últimas 24h</li><li><b>MÉD HH:MM</b> — intervalo médio (72h)</li><li><b>MÉD/DIA</b> — média diária 7d</li><li><b>MÇOS/7D</b> — maços consumidos (÷20)</li></ul>
+<p class="man-p">Deslize os gráficos de barras para navegar. O gráfico circular mostra a distribuição horária dos últimos 7 dias completos.</p>
+<div class="man-h1">5 · DEFINIÇÕES</div>
+<p class="man-p">Idioma · Limiares de cor · Exportar/Importar JSON · Eliminar intervalo · Zona de perigo</p>
+<div class="man-h1">6 · COMEÇAR</div>
+<div class="man-warn">⚠ Após uma semana de uso real, elimine os 8 dias demo para conservar apenas os seus dados.</div>
+<ol class="man-ol"><li>Use normalmente por 7 dias (☠ por cigarro)</li><li>Definições ⚙ → "Eliminar intervalo de datas"</li><li>Insira os 8 dias demo → 🗑 Eliminar</li><li>Os seus 7 dias pessoais ficam intactos</li></ol>
+<div class="man-tip">★ Anote a data de instalação para encontrar facilmente o intervalo a eliminar.</div>`,
 
   ru: `<div class="man-h1">1 · ОБЗОР</div>
-<p class="man-p">SmokeTracker — PWA для главного экрана. Без аккаунта, без облака, данные 100% локальные.</p>
+<p class="man-p">SmokeTracker — PWA для главного экрана. Фиксируй каждую сигарету, смотри тренды — без аккаунта, без облака, данные 100% локальные.</p>
+<ul class="man-ul"><li>Работает офлайн</li><li>Устанавливается на Android / iOS / ПК</li><li>12 языков</li></ul>
 <div class="man-h1">2 · БЫСТРЫЙ СТАРТ</div>
-<ol class="man-ol"><li>Открыть в Chrome или Safari</li><li>Меню ⋮ → «На главный экран»</li><li>☠ при каждой сигарете</li><li>STATS ▸ для диаграмм</li></ol>
-<div class="man-h1">3 · РЕКОМЕНДАЦИЯ</div>
-<div class="man-warn">⚠ После недели: удалите 8 демо-дней, чтобы оставить только личные данные.</div>`,
+<ol class="man-ol"><li>Открыть в Chrome или Safari</li><li>Меню ⋮ → «На главный экран»</li><li>Нажимать ☠ при каждой сигарете</li><li>STATS ▸ для графиков</li></ol>
+<div class="man-h1">3 · ФУНКЦИИ</div>
+<p class="man-p"><b>Кнопка ☠</b> — запись с точной меткой времени + вибрация. <b>История</b> — ✎ редактировать / ✕ удалять каждую запись.</p>
+<p class="man-p"><b>Демо-данные</b> — 8 дней (~20 сиг./день) генерируются автоматически при первом запуске для демонстрации функций.</p>
+<div class="man-h1">4 · СТАТИСТИКА</div>
+<ul class="man-ul"><li><b>СИГ 24Ч</b> — всего за 24ч</li><li><b>СР HH:MM</b> — средний интервал (72ч)</li><li><b>СР/ДЕНЬ</b> — среднее в день за 7д</li><li><b>ПАЧ/7Д</b> — пачки (÷20)</li></ul>
+<p class="man-p">Смахивай столбчатые графики для навигации. Круговой показывает распределение по часам за 7 последних полных дней.</p>
+<div class="man-h1">5 · НАСТРОЙКИ</div>
+<p class="man-p">Язык · Цветовые пороги · Экспорт/Импорт JSON · Удаление диапазона · Зона опасности</p>
+<div class="man-h1">6 · НАЧАЛО РАБОТЫ</div>
+<div class="man-warn">⚠ После недели реального использования удали 8 демо-дней, чтобы остались только личные данные.</div>
+<ol class="man-ol"><li>Используй нормально 7 дней (☠ на каждую сигарету)</li><li>Настройки ⚙ → «Удалить диапазон дат»</li><li>Введи 8 демо-дней → 🗑 Удалить</li><li>Твои 7 личных дней остаются нетронутыми</li></ol>
+<div class="man-tip">★ Запиши дату установки, чтобы легко найти диапазон для удаления.</div>`,
 
   zh: `<div class="man-h1">1 · 简介</div>
-<p class="man-p">SmokeTracker 是可安装在主屏幕的 PWA。无需账号，无需云端，数据 100% 本地。</p>
-<div class="man-h1">2 · 快速入门</div>
-<ol class="man-ol"><li>在 Chrome 或 Safari 中打开</li><li>菜单 ⋮ → "添加到主屏幕"</li><li>每次吸烟点击 ☠</li><li>通过 STATS ▸ 查看统计</li></ol>
-<div class="man-h1">3 · 入门建议</div>
-<div class="man-warn">⚠ 使用一周后，请删除8天演示数据，仅保留个人数据。</div>`,
+<p class="man-p">SmokeTracker 是可安装在主屏幕的 PWA。记录每支烟，查看趋势 — 无需账号，无需云端，数据 100% 本地存储。</p>
+<ul class="man-ul"><li>支持离线使用</li><li>可安装于 Android / iOS / 桌面</li><li>12 种语言</li></ul>
+<div class="man-h1">2 · 快速开始</div>
+<ol class="man-ol"><li>在 Chrome 或 Safari 中打开</li><li>菜单 ⋮ → "添加到主屏幕"</li><li>每次吸烟点击 ☠</li><li>点击 统计 ▸ 查看图表</li></ol>
+<div class="man-h1">3 · 功能</div>
+<p class="man-p"><b>☠ 按钮</b> — 精确时间戳记录 + 触感反馈。<b>历史记录</b> — ✎ 编辑 / ✕ 删除每条记录。</p>
+<p class="man-p"><b>演示数据</b> — 首次启动自动生成 8 天数据（~20 支/天），展示所有功能。</p>
+<div class="man-h1">4 · 统计</div>
+<ul class="man-ul"><li><b>烟支 24小时</b> — 过去 24 小时总数</li><li><b>均值 HH:MM</b> — 平均间隔（72小时）</li><li><b>均值/天</b> — 7天日均</li><li><b>包/7天</b> — 消耗包数（÷20）</li></ul>
+<p class="man-p">滑动柱状图浏览历史。饼图显示过去 7 个完整天的时段分布。</p>
+<div class="man-h1">5 · 设置</div>
+<p class="man-p">语言 · 颜色阈值 · 导出/导入 JSON · 删除日期段 · 危险区域</p>
+<div class="man-h1">6 · 开始使用</div>
+<div class="man-warn">⚠ 真实使用一周后，删除 8 天演示数据，仅保留个人记录。</div>
+<ol class="man-ol"><li>正常使用 7 天（每支烟点击 ☠）</li><li>设置 ⚙ → "删除日期范围"</li><li>输入 8 个演示天 → 🗑 删除</li><li>7 天个人数据保持完整</li></ol>
+<div class="man-tip">★ 记下安装日期，方便找到需要删除的范围。</div>`,
 
   ja: `<div class="man-h1">1 · 概要</div>
-<p class="man-p">SmokeTrackerはホーム画面にインストールできるPWAです。アカウント不要、クラウド不要、データは100%ローカル。</p>
+<p class="man-p">SmokeTracker はホーム画面にインストールできる PWA です。毎回のタバコを記録してトレンドを可視化 — アカウント不要、クラウド不要、データは 100% ローカル。</p>
+<ul class="man-ul"><li>オフラインで動作</li><li>Android / iOS / デスクトップにインストール可能</li><li>12 言語対応</li></ul>
 <div class="man-h1">2 · クイックスタート</div>
-<ol class="man-ol"><li>ChromeまたはSafariで開く</li><li>メニュー ⋮ →「ホーム画面に追加」</li><li>喫煙のたびに ☠ をタップ</li><li>STATS ▸ でグラフを確認</li></ol>
-<div class="man-h1">3 · 推奨事項</div>
-<div class="man-warn">⚠ 1週間後：8日間のデモデータを削除して個人データのみ残してください。</div>`,
+<ol class="man-ol"><li>Chrome または Safari で開く</li><li>メニュー ⋮ → 「ホーム画面に追加」</li><li>タバコのたびに ☠ をタップ</li><li>STATS ▸ でグラフを確認</li></ol>
+<div class="man-h1">3 · 機能</div>
+<p class="man-p"><b>☠ ボタン</b> — 正確なタイムスタンプで記録 + 触覚フィードバック。<b>履歴</b> — ✎ 編集 / ✕ 各エントリの削除。</p>
+<p class="man-p"><b>デモデータ</b> — すべての機能を紹介するため、初回起動時に 8 日分（~20 本/日）が自動生成されます。</p>
+<div class="man-h1">4 · 統計</div>
+<ul class="man-ul"><li><b>本数 24H</b> — 直近 24 時間の合計</li><li><b>平均 HH:MM</b> — 平均間隔（72時間）</li><li><b>平均/日</b> — 7日間の日次平均</li><li><b>箱/7日</b> — 消費箱数（÷20）</li></ul>
+<p class="man-p">棒グラフをスワイプして履歴を閲覧。円グラフは直近 7 完全日の時間帯分布を表示。</p>
+<div class="man-h1">5 · 設定</div>
+<p class="man-p">言語 · カラー閾値 · JSON エクスポート/インポート · 期間削除 · 危険ゾーン</p>
+<div class="man-h1">6 · はじめ方</div>
+<div class="man-warn">⚠ 1週間の実際の使用後、8日間のデモデータを削除して個人データのみ残しましょう。</div>
+<ol class="man-ol"><li>7日間通常通り使用（タバコのたびに ☠）</li><li>設定 ⚙ → 「日付範囲を削除」</li><li>8日間のデモ日を入力 → 🗑 削除</li><li>7日間の個人データはそのまま残ります</li></ol>
+<div class="man-tip">★ インストール日をメモしておくと削除範囲を簡単に見つけられます。</div>`,
 
   vi: `<div class="man-h1">1 · GIỚI THIỆU</div>
 <p class="man-p">SmokeTracker là PWA có thể cài trên màn hình chính. Ghi lại mỗi điếu thuốc, xem xu hướng — không tài khoản, không cloud, dữ liệu 100% cục bộ.</p>
