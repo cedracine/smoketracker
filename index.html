@@ -77,14 +77,13 @@
   .lang-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
   .lang-tile {
     background: rgba(255,255,255,0.05); border: 1px solid var(--card-border);
-    color: var(--text); padding: 14px 12px; border-radius: 12px;
-    font-family: 'Bebas Neue', cursive; font-size: 15px; letter-spacing: 0.5px;
+    color: var(--text); padding: 10px 8px; border-radius: 12px;
     cursor: pointer; transition: all 0.15s; text-align: left;
-    display: flex; flex-direction: row; align-items: center; gap: 10px;
-    min-height: 56px;
+    display: flex; flex-direction: row; align-items: center; gap: 8px;
+    min-height: 52px; overflow: hidden;
   }
   .lang-tile:active { transform: scale(0.93); }
-  .lang-tile-name { font-size:15px; font-weight:700; letter-spacing:0.5px; }
+  .lang-tile-name { font-size:13px; font-weight:700; letter-spacing:0; line-height:1.2; font-family: system-ui, -apple-system, sans-serif; word-break: break-word; }
   .lang-tile.active {
     background: color-mix(in srgb, var(--accent) 22%, transparent);
     border-color: var(--accent); color: var(--accent);
