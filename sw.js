@@ -1,20 +1,17 @@
-// SmokeTracker Service Worker — offline-first PWA
-const CACHE = 'smoketracker-v6';
-
+// CigTracker Service Worker
+const CACHE = 'cigtracker-v8';
 const basePath = self.location.pathname.replace('sw.js', '');
 
-// Only same-origin assets — cross-origin (fonts) must NOT be in precache
-// addAll fails the entire install if any URL throws, including CORS errors
 const ASSETS = [
   basePath,
   basePath + 'index.html',
   basePath + 'manifest.json',
+  basePath + 'icon.svg',
   basePath + 'icon-192.png',
   basePath + 'icon-512.png',
-  basePath + 'icon-512-maskable.png',
 ];
 
-// Install: pre-cache local assets only
+// Install: pre-cache
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE)
@@ -34,18 +31,18 @@ self.addEventListener('activate', e => {
   );
 });
 
-// Fetch: cache-first for same-origin, network passthrough for cross-origin (fonts etc.)
+// Fetch: NETWORK FIRST for HTML, cache-first for assets
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
 
-  // Let cross-origin requests pass through untouched
-  const url = new URL(e.request.url);
-  if (url.origin !== self.location.origin) return;
+  const isHTML = e.request.destination === 'document' ||
+                 e.request.url.endsWith('.html') ||
+                 e.request.url.endsWith('/');
 
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      if (cached) return cached;
-      return fetch(e.request)
+  if (isHTML) {
+    // Network first for HTML: always get fresh index.html
+    e.respondWith(
+      fetch(e.request)
         .then(response => {
           if (response && response.status === 200) {
             const clone = response.clone();
@@ -53,16 +50,25 @@ self.addEventListener('fetch', e => {
           }
           return response;
         })
-        .catch(() => {
-          if (e.request.destination === 'document') {
-            return caches.match(basePath + 'index.html');
+        .catch(() => caches.match(e.request))
+    );
+  } else {
+    // Cache first for static assets (icons, etc.)
+    e.respondWith(
+      caches.match(e.request).then(cached => {
+        if (cached) return cached;
+        return fetch(e.request).then(response => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE).then(c => c.put(e.request, clone));
           }
+          return response;
         });
-    })
-  );
+      })
+    );
+  }
 });
 
-// Instant update
 self.addEventListener('message', e => {
-  if (e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
+  if (e.data && (e.data.type === 'SKIP_WAITING' || e.data.action === 'skipWaiting')) self.skipWaiting();
 });
