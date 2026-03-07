@@ -603,6 +603,16 @@
     background: rgba(255,215,0,0.14);
   }
 
+  /* Install button */
+  .install-btn {
+    display: none; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; padding: 13px 20px; border-radius: 14px;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 20%, transparent), color-mix(in srgb, var(--accent) 10%, transparent));
+    border: 1px solid var(--accent); color: var(--accent);
+    font-family: 'Bebas Neue', cursive; font-size: 17px; letter-spacing: 1.5px;
+    cursor: pointer; transition: all 0.15s; margin-top: 6px;
+  }
+  .install-btn:active { transform: scale(0.97); }
 </style>
 </head>
 <body>
@@ -772,6 +782,10 @@
         <span>📖</span>
         <span data-i18n="s_manual">MANUEL D'UTILISATION</span>
       </button>
+      <button class="install-btn" id="installBtn" onclick="triggerInstall()">
+        <span>📲</span>
+        <span data-i18n="s_install_app">INSTALLER L'APP</span>
+      </button>
     </div>
 
     <!-- COLOR THRESHOLDS -->
@@ -897,7 +911,8 @@ const TRANSLATIONS = {
     sub_near: (ref) => `presque à la moyenne (${ref}h)`,
     sub_bravo: '✓ dépassé votre moyenne — bravo !',
 
-    s_manual: "MANUEL D'UTILISATION",  },
+    s_manual: "MANUEL D'UTILISATION",
+    s_install_app: 'INSTALLER L'APP',  },
   en: {
     avg_label: 'CIG / DAY (3-DAY AVG)',
     trend_lbl: 'Trend (7d)',
@@ -964,7 +979,8 @@ const TRANSLATIONS = {
     sub_near: (ref) => `almost at your average (${ref}h)`,
     sub_bravo: '✓ beat your average — well done!',
 
-    s_manual: 'USER MANUAL',  },
+    s_manual: 'USER MANUAL',
+    s_install_app: 'INSTALL THE APP',  },
   es: {
     avg_label: 'CIG / DÍA (PROM. 3 DÍAS)',
     trend_lbl: 'Tendencia (7d)',
@@ -1031,7 +1047,8 @@ const TRANSLATIONS = {
     sub_near: (ref) => `casi en tu promedio (${ref}h)`,
     sub_bravo: '✓ superaste tu promedio — ¡bravo!',
 
-    s_manual: 'MANUAL DE USUARIO',  },
+    s_manual: 'MANUAL DE USUARIO',
+    s_install_app: 'INSTALAR LA APP',  },
 
   it: {
     avg_label: 'SIG / GIORNO (MEDIA 3 GG)',
@@ -1099,7 +1116,8 @@ const TRANSLATIONS = {
     sub_near: (ref) => `quasi alla media (${ref}h)`,
     sub_bravo: '✓ superata la media — bravo!',
 
-    s_manual: 'MANUALE UTENTE',  },
+    s_manual: 'MANUALE UTENTE',
+    s_install_app: 'INSTALAR LA APP',  },
   pt: {
     avg_label: 'CIG / DIA (MÉDIA 3 DIAS)',
     trend_lbl: 'Tendência (7d)',
@@ -1166,7 +1184,8 @@ const TRANSLATIONS = {
     sub_near: (ref) => `quase na média (${ref}h)`,
     sub_bravo: '✓ superou sua média — parabéns!',
 
-    s_manual: 'MANUAL DO UTILIZADOR',  },
+    s_manual: 'MANUAL DO UTILIZADOR',
+    s_install_app: 'INSTALAR LA APP',  },
   ru: {
     avg_label: 'СИГ / ДЕНЬ (СРЕДН. 3 ДНЯ)',
     trend_lbl: 'Тренд (7д)',
@@ -1233,7 +1252,8 @@ const TRANSLATIONS = {
     sub_near: (ref) => `почти среднее (${ref}ч)`,
     sub_bravo: '✓ превысили среднее — отлично!',
 
-    s_manual: 'РУКОВОДСТВО',  },
+    s_manual: 'РУКОВОДСТВО',
+    s_install_app: 'INSTALAR LA APP',  },
   zh: {
     avg_label: '烟支/天（3天均值）',
     trend_lbl: '趋势（7天）',
@@ -1300,7 +1320,8 @@ const TRANSLATIONS = {
     sub_near: (ref) => `接近均值（${ref}小时）`,
     sub_bravo: '✓ 超过均值 — 很好！',
 
-    s_manual: '用户手册',  },
+    s_manual: '用户手册',
+    s_install_app: 'INSTALAR LA APP',  },
   hi: {
     avg_label: 'सिग / दिन (3 दिन औसत)',
     trend_lbl: 'रुझान (7दिन)',
@@ -1367,7 +1388,8 @@ const TRANSLATIONS = {
     sub_near: (ref) => `औसत के करीब (${ref}घं)`,
     sub_bravo: '✓ औसत पार किया — शाबाश!',
 
-    s_manual: 'उपयोगकर्ता पुस्तिका',  },
+    s_manual: 'उपयोगकर्ता पुस्तिका',
+    s_install_app: 'INSTALAR LA APP',  },
   vi: {
     avg_label: 'ĐIẾU / NGÀY (TB 3 NGÀY)',
     trend_lbl: 'Xu hướng (7ng)',
@@ -1434,7 +1456,8 @@ const TRANSLATIONS = {
     sub_near: (ref) => `gần mức trung bình (${ref}g)`,
     sub_bravo: '✓ vượt mức trung bình — xuất sắc!',
 
-    s_manual: 'HƯỚNG DẪN SỬ DỤNG',  },
+    s_manual: 'HƯỚNG DẪN SỬ DỤNG',
+    s_install_app: 'INSTALAR LA APP',  },
   th: {
     avg_label: 'มวน/วัน (เฉลี่ย 3 วัน)',
     trend_lbl: 'แนวโน้ม (7ว)',
@@ -1501,7 +1524,8 @@ const TRANSLATIONS = {
     sub_near: (ref) => `ใกล้ค่าเฉลี่ย (${ref}ชม)`,
     sub_bravo: '✓ เกินค่าเฉลี่ย — ยอดเยี่ยม!',
 
-    s_manual: 'คู่มือผู้ใช้',  },
+    s_manual: 'คู่มือผู้ใช้',
+    s_install_app: 'INSTALAR LA APP',  },
   km: {
     avg_label: 'ក្តាប់/ថ្ងៃ (មធ្យម ៣ ថ្ងៃ)',
     trend_lbl: 'និន្នាការ (7ថ)',
@@ -1568,7 +1592,8 @@ const TRANSLATIONS = {
     sub_near: (ref) => `ជិតដល់មធ្យម (${ref}ម៉ោង)`,
     sub_bravo: '✓ លើសមធ្យម — ល្អណាស់!',
 
-    s_manual: 'សៀវភៅណែនាំ',  },
+    s_manual: 'សៀវភៅណែនាំ',
+    s_install_app: 'INSTALAR LA APP',  },
   de: {
     avg_label: 'ZIG / TAG (3-TAGE-DURCHSCHN.)',
     trend_lbl: 'Trend (7T)',
@@ -1635,7 +1660,8 @@ const TRANSLATIONS = {
     sub_near: (ref) => `fast beim Durchschnitt (${ref}h)`,
     sub_bravo: '✓ Durchschnitt übertroffen — Bravo!',
 
-    s_manual: 'BENUTZERHANDBUCH',  }
+    s_manual: 'BENUTZERHANDBUCH',
+    s_install_app: 'APP INSTALLIEREN',  },
 };
 
 let currentLang = 'fr';
@@ -2532,7 +2558,7 @@ setInterval(update, 60000);
 
 // Register service worker for offline PWA support
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js')
+  navigator.serviceWorker.register('./sw.js', {scope: './'})
     .then(reg => {
       // If there's a waiting SW (new version), activate it immediately
       if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
@@ -3171,6 +3197,25 @@ function closeManual() {
   document.getElementById('manualPanel').classList.remove('open');
 }
 
+// PWA Install prompt
+let deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  const btn = document.getElementById('installBtn');
+  if (btn) btn.style.display = 'flex';
+});
+window.addEventListener('appinstalled', () => {
+  deferredInstallPrompt = null;
+  const btn = document.getElementById('installBtn');
+  if (btn) btn.style.display = 'none';
+});
+function triggerInstall() {
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    deferredInstallPrompt.userChoice.then(() => { deferredInstallPrompt = null; });
+  }
+}
 </script>
 
 <!-- Manual Panel -->
