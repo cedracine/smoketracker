@@ -2,8 +2,8 @@
   "name": "SmokeTracker ☠",
   "short_name": "SmokeTracker",
   "description": "Suivi de consommation de cigarettes - SmokeTracker",
-  "start_url": "./",
-  "scope": "./",
+  "start_url": "/smoketracker/",
+  "scope": "/smoketracker/",
   "display": "standalone",
   "background_color": "#1a1a2e",
   "theme_color": "#1a1a2e",
@@ -20,15 +20,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "screenshot-wide.png",
-      "sizes": "1280x800",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "SmokeTracker — suivi de consommation"
     }
   ]
 }
