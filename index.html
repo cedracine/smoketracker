@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="SmokeTracker">
   <meta name="application-name" content="SmokeTracker">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="manifest.json" crossorigin="use-credentials">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
@@ -912,7 +912,7 @@ const TRANSLATIONS = {
     sub_bravo: '✓ dépassé votre moyenne — bravo !',
 
     s_manual: "MANUEL D'UTILISATION",
-    s_install_app: 'INSTALLER L'APP',  },
+    s_install_app: "INSTALLER L'APP",  },
   en: {
     avg_label: 'CIG / DAY (3-DAY AVG)',
     trend_lbl: 'Trend (7d)',
@@ -980,7 +980,7 @@ const TRANSLATIONS = {
     sub_bravo: '✓ beat your average — well done!',
 
     s_manual: 'USER MANUAL',
-    s_install_app: 'INSTALL THE APP',  },
+    s_install_app: "INSTALL THE APP",  },
   es: {
     avg_label: 'CIG / DÍA (PROM. 3 DÍAS)',
     trend_lbl: 'Tendencia (7d)',
@@ -1048,7 +1048,7 @@ const TRANSLATIONS = {
     sub_bravo: '✓ superaste tu promedio — ¡bravo!',
 
     s_manual: 'MANUAL DE USUARIO',
-    s_install_app: 'INSTALAR LA APP',  },
+    s_install_app: "INSTALAR LA APP",  },
 
   it: {
     avg_label: 'SIG / GIORNO (MEDIA 3 GG)',
@@ -1117,7 +1117,7 @@ const TRANSLATIONS = {
     sub_bravo: '✓ superata la media — bravo!',
 
     s_manual: 'MANUALE UTENTE',
-    s_install_app: 'INSTALAR LA APP',  },
+    s_install_app: "INSTALAR LA APP",  },
   pt: {
     avg_label: 'CIG / DIA (MÉDIA 3 DIAS)',
     trend_lbl: 'Tendência (7d)',
@@ -1185,7 +1185,7 @@ const TRANSLATIONS = {
     sub_bravo: '✓ superou sua média — parabéns!',
 
     s_manual: 'MANUAL DO UTILIZADOR',
-    s_install_app: 'INSTALAR LA APP',  },
+    s_install_app: "INSTALAR LA APP",  },
   ru: {
     avg_label: 'СИГ / ДЕНЬ (СРЕДН. 3 ДНЯ)',
     trend_lbl: 'Тренд (7д)',
@@ -1253,7 +1253,7 @@ const TRANSLATIONS = {
     sub_bravo: '✓ превысили среднее — отлично!',
 
     s_manual: 'РУКОВОДСТВО',
-    s_install_app: 'INSTALAR LA APP',  },
+    s_install_app: "INSTALAR LA APP",  },
   zh: {
     avg_label: '烟支/天（3天均值）',
     trend_lbl: '趋势（7天）',
@@ -1321,7 +1321,7 @@ const TRANSLATIONS = {
     sub_bravo: '✓ 超过均值 — 很好！',
 
     s_manual: '用户手册',
-    s_install_app: 'INSTALAR LA APP',  },
+    s_install_app: "INSTALAR LA APP",  },
   hi: {
     avg_label: 'सिग / दिन (3 दिन औसत)',
     trend_lbl: 'रुझान (7दिन)',
@@ -1389,7 +1389,7 @@ const TRANSLATIONS = {
     sub_bravo: '✓ औसत पार किया — शाबाश!',
 
     s_manual: 'उपयोगकर्ता पुस्तिका',
-    s_install_app: 'INSTALAR LA APP',  },
+    s_install_app: "INSTALAR LA APP",  },
   vi: {
     avg_label: 'ĐIẾU / NGÀY (TB 3 NGÀY)',
     trend_lbl: 'Xu hướng (7ng)',
@@ -1457,7 +1457,7 @@ const TRANSLATIONS = {
     sub_bravo: '✓ vượt mức trung bình — xuất sắc!',
 
     s_manual: 'HƯỚNG DẪN SỬ DỤNG',
-    s_install_app: 'INSTALAR LA APP',  },
+    s_install_app: "INSTALAR LA APP",  },
   th: {
     avg_label: 'มวน/วัน (เฉลี่ย 3 วัน)',
     trend_lbl: 'แนวโน้ม (7ว)',
@@ -1525,7 +1525,7 @@ const TRANSLATIONS = {
     sub_bravo: '✓ เกินค่าเฉลี่ย — ยอดเยี่ยม!',
 
     s_manual: 'คู่มือผู้ใช้',
-    s_install_app: 'INSTALAR LA APP',  },
+    s_install_app: "INSTALAR LA APP",  },
   km: {
     avg_label: 'ក្តាប់/ថ្ងៃ (មធ្យម ៣ ថ្ងៃ)',
     trend_lbl: 'និន្នាការ (7ថ)',
@@ -1593,7 +1593,7 @@ const TRANSLATIONS = {
     sub_bravo: '✓ លើសមធ្យម — ល្អណាស់!',
 
     s_manual: 'សៀវភៅណែនាំ',
-    s_install_app: 'INSTALAR LA APP',  },
+    s_install_app: "INSTALAR LA APP",  },
   de: {
     avg_label: 'ZIG / TAG (3-TAGE-DURCHSCHN.)',
     trend_lbl: 'Trend (7T)',
@@ -1661,7 +1661,7 @@ const TRANSLATIONS = {
     sub_bravo: '✓ Durchschnitt übertroffen — Bravo!',
 
     s_manual: 'BENUTZERHANDBUCH',
-    s_install_app: 'APP INSTALLIEREN',  },
+    s_install_app: "APP INSTALLIEREN",  },
 };
 
 let currentLang = 'fr';
@@ -2561,7 +2561,10 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js', {scope: './'})
     .then(reg => {
       // If there's a waiting SW (new version), activate it immediately
-      if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+      if (reg.waiting) {
+        reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+        navigator.serviceWorker.addEventListener('controllerchange', () => window.location.reload());
+      }
       reg.addEventListener('updatefound', () => {
         const nw = reg.installing;
         nw.addEventListener('statechange', () => {

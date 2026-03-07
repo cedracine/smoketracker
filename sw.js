@@ -1,5 +1,5 @@
 // SmokeTracker Service Worker — fonctionne sur n'importe quel sous-chemin
-const CACHE = 'smoketracker-v12';
+const CACHE = 'smoketracker-v13';
 
 // Le basePath est détecté automatiquement depuis l'URL du SW lui-même
 // Ex: /SmokeTracker/sw.js → basePath = /SmokeTracker/
