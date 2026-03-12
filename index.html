@@ -613,6 +613,49 @@
     cursor: pointer; transition: all 0.15s; margin-top: 6px;
   }
   .install-btn:active { transform: scale(0.97); }
+
+  /* ── Week separator ──────────────────────────────── */
+  .week-sep {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Courier Prime', monospace; font-size: 10px;
+    color: var(--accent); opacity: 0.45; letter-spacing: 2px;
+    text-transform: uppercase; margin: 6px 4px 4px;
+    pointer-events: none; user-select: none;
+  }
+  .week-sep::before, .week-sep::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.3;
+  }
+
+  /* ── Full History button ─────────────────────────── */
+  .full-history-btn {
+    display: block; width: 100%; margin: 10px 0 6px;
+    padding: 11px 16px; border-radius: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.7);
+    font-family: 'Bebas Neue', cursive; font-size: 15px;
+    letter-spacing: 1.5px; cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .full-history-btn:active { background: rgba(255,255,255,0.08); }
+
+  /* ── Donate / Contact button ─────────────────────── */
+  .donate-btn {
+    display: block; width: 100%; margin: 6px 0 16px;
+    padding: 11px 16px; border-radius: 12px;
+    background: linear-gradient(135deg,
+      color-mix(in srgb, var(--accent) 18%, transparent),
+      color-mix(in srgb, var(--accent) 8%, transparent));
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    color: var(--accent);
+    font-family: 'Bebas Neue', cursive; font-size: 15px;
+    letter-spacing: 1.5px; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .donate-btn:active { opacity: 0.8; }
+
 </style>
   <!-- Open Graph / Social sharing -->
   <meta property="og:type" content="website">
@@ -699,8 +742,28 @@
 
   <div class="section-title" data-i18n="history_title">HISTORIQUE RÉCENT</div>
   <div class="pack-list" id="packList" style="position:relative;z-index:10;"></div>
+
+  <!-- Full History button -->
+  <button class="full-history-btn" onclick="openFullHistory()">
+    <span data-i18n="full_history_btn">Tout l'Historique</span>
+  </button>
+
+  <!-- Donate / Contact button (main) -->
+  <button class="donate-btn" onclick="window.open('https://donate.cedracine.com','_blank')">
+    <span data-i18n="donate_contact_btn">Donnez · Contact</span>
+  </button>
+
 </div>
 
+
+<!-- Full History Panel -->
+<div class="slide-panel" id="fullHistoryPanel">
+  <div class="panel-header">
+    <button class="back-btn" onclick="closeFullHistory()">&#8592;</button>
+    <span data-i18n="full_history_btn">Tout l'Historique</span>
+  </div>
+  <div id="fullHistoryList" class="pack-list" style="padding:0 0 80px 0;"></div>
+</div>
 <!-- Edit Modal -->
 <div class="modal-overlay" id="editModal">
   <div class="modal">
@@ -756,6 +819,13 @@
       <div class="chart-hint" data-i18n="swipe_hint">← glisser pour naviguer →</div>
     </div>
 
+  </div>
+
+  <!-- Donate / Contact button (stats) -->
+  <div style="padding:0 16px 24px;">
+    <button class="donate-btn" onclick="window.open('https://donate.cedracine.com','_blank')">
+      <span data-i18n="donate_contact_btn">Donnez · Contact</span>
+    </button>
   </div>
 </div>
 
@@ -849,6 +919,13 @@
     </div>
 
   </div>
+
+  <!-- Donate / Contact button (settings) -->
+  <div style="padding:8px 16px 24px;">
+    <button class="donate-btn" onclick="window.open('https://donate.cedracine.com','_blank')">
+      <span data-i18n="donate_contact_btn">Donnez · Contact</span>
+    </button>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -925,6 +1002,9 @@ const TRANSLATIONS = {
 
     s_manual: "MANUEL D'UTILISATION",
     s_install_app: "INSTALLER L'APP",  },
+    full_history_btn: 'Tout l\'Historique',
+    donate_contact_btn: 'Donnez · Contact',
+    week_sep: '── semaine ──',
   en: {
     avg_label: 'CIG / DAY (3-DAY AVG)',
     trend_lbl: 'Trend (7d)',
@@ -993,6 +1073,9 @@ const TRANSLATIONS = {
 
     s_manual: 'USER MANUAL',
     s_install_app: "INSTALL THE APP",  },
+    full_history_btn: 'Full History',
+    donate_contact_btn: 'Donate · Contact',
+    week_sep: '── week ──',
   es: {
     avg_label: 'CIG / DÍA (PROM. 3 DÍAS)',
     trend_lbl: 'Tendencia (7d)',
@@ -1061,6 +1144,9 @@ const TRANSLATIONS = {
 
     s_manual: 'MANUAL DE USUARIO',
     s_install_app: "INSTALAR LA APP",  },
+    full_history_btn: 'Historial completo',
+    donate_contact_btn: 'Donar · Contacto',
+    week_sep: '── semana ──',
 
   it: {
     avg_label: 'SIG / GIORNO (MEDIA 3 GG)',
@@ -1130,6 +1216,9 @@ const TRANSLATIONS = {
 
     s_manual: 'MANUALE UTENTE',
     s_install_app: "INSTALAR LA APP",  },
+    full_history_btn: 'Cronologia completa',
+    donate_contact_btn: 'Dona · Contatto',
+    week_sep: '── settimana ──',
   pt: {
     avg_label: 'CIG / DIA (MÉDIA 3 DIAS)',
     trend_lbl: 'Tendência (7d)',
@@ -1198,6 +1287,9 @@ const TRANSLATIONS = {
 
     s_manual: 'MANUAL DO UTILIZADOR',
     s_install_app: "INSTALAR LA APP",  },
+    full_history_btn: 'Histórico completo',
+    donate_contact_btn: 'Doar · Contato',
+    week_sep: '── semana ──',
   ru: {
     avg_label: 'СИГ / ДЕНЬ (СРЕДН. 3 ДНЯ)',
     trend_lbl: 'Тренд (7д)',
@@ -1266,6 +1358,9 @@ const TRANSLATIONS = {
 
     s_manual: 'РУКОВОДСТВО',
     s_install_app: "INSTALAR LA APP",  },
+    full_history_btn: 'Вся история',
+    donate_contact_btn: 'Поддержать · Контакт',
+    week_sep: '── неделя ──',
   zh: {
     avg_label: '烟支/天（3天均值）',
     trend_lbl: '趋势（7天）',
@@ -1334,6 +1429,9 @@ const TRANSLATIONS = {
 
     s_manual: '用户手册',
     s_install_app: "INSTALAR LA APP",  },
+    full_history_btn: '完整历史',
+    donate_contact_btn: '捐赠 · 联系',
+    week_sep: '── 周 ──',
   hi: {
     avg_label: 'सिग / दिन (3 दिन औसत)',
     trend_lbl: 'रुझान (7दिन)',
@@ -1402,6 +1500,9 @@ const TRANSLATIONS = {
 
     s_manual: 'उपयोगकर्ता पुस्तिका',
     s_install_app: "INSTALAR LA APP",  },
+    full_history_btn: 'पूरा इतिहास',
+    donate_contact_btn: 'दान · संपर्क',
+    week_sep: '── सप्ताह ──',
   vi: {
     avg_label: 'ĐIẾU / NGÀY (TB 3 NGÀY)',
     trend_lbl: 'Xu hướng (7ng)',
@@ -1470,6 +1571,9 @@ const TRANSLATIONS = {
 
     s_manual: 'HƯỚNG DẪN SỬ DỤNG',
     s_install_app: "INSTALAR LA APP",  },
+    full_history_btn: 'Toàn bộ lịch sử',
+    donate_contact_btn: 'Ủng hộ · Liên hệ',
+    week_sep: '── tuần ──',
   th: {
     avg_label: 'มวน/วัน (เฉลี่ย 3 วัน)',
     trend_lbl: 'แนวโน้ม (7ว)',
@@ -1538,6 +1642,9 @@ const TRANSLATIONS = {
 
     s_manual: 'คู่มือผู้ใช้',
     s_install_app: "INSTALAR LA APP",  },
+    full_history_btn: 'ประวัติทั้งหมด',
+    donate_contact_btn: 'บริจาค · ติดต่อ',
+    week_sep: '── สัปดาห์ ──',
   km: {
     avg_label: 'ក្តាប់/ថ្ងៃ (មធ្យម ៣ ថ្ងៃ)',
     trend_lbl: 'និន្នាការ (7ថ)',
@@ -1606,6 +1713,9 @@ const TRANSLATIONS = {
 
     s_manual: 'សៀវភៅណែនាំ',
     s_install_app: "INSTALAR LA APP",  },
+    full_history_btn: 'ប្រវត្តិទាំងអស់',
+    donate_contact_btn: 'បរិច្ចាគ · ទំនាក់ទំនង',
+    week_sep: '── សប្តាហ៍ ──',
   de: {
     avg_label: 'ZIG / TAG (3-TAGE-DURCHSCHN.)',
     trend_lbl: 'Trend (7T)',
@@ -1674,6 +1784,9 @@ const TRANSLATIONS = {
 
     s_manual: 'BENUTZERHANDBUCH',
     s_install_app: "APP INSTALLIEREN",  },
+    full_history_btn: 'Vollständiger Verlauf',
+    donate_contact_btn: 'Spenden · Kontakt',
+    week_sep: '── Woche ──',
 };
 
 let currentLang = 'fr';
@@ -1707,6 +1820,10 @@ function setLang(lang) {
   updateLangTiles();
   // Re-render list (dates localised) and update dynamic texts
   update();
+  // Re-render fullHistory if open
+  if (document.getElementById('fullHistoryPanel').classList.contains('open')) {
+    renderFullHistory();
+  }
 }
 
 function t(key, ...args) {
@@ -2010,29 +2127,58 @@ function update() {
   renderList();
 }
 
+function isSundayBoundary(tsA, tsB) {
+  // Returns true if a Sunday midnight falls between tsB (older) and tsA (newer)
+  const dA = new Date(tsA), dB = new Date(tsB);
+  // Walk day by day from dB to dA and check for Sunday midnight crossing
+  const startDay = new Date(dB); startDay.setHours(0,0,0,0);
+  const endDay   = new Date(dA); endDay.setHours(0,0,0,0);
+  for (let d = new Date(startDay.getTime() + 86400000); d <= endDay; d = new Date(d.getTime() + 86400000)) {
+    if (d.getDay() === 0) return true;  // 0 = Sunday
+  }
+  return false;
+}
+
+function makeSundaySep() {
+  const sep = document.createElement('div');
+  sep.className = 'week-sep';
+  sep.setAttribute('data-i18n', 'week_sep');
+  sep.textContent = t('week_sep');
+  return sep;
+}
+
+function renderPackItem(p, displayNum, deltaH) {
+  const d = new Date(p.ts);
+  const item = document.createElement('div');
+  item.className = 'pack-item';
+  const dt = formatDate(d);
+  const sp = t('since_prev');
+  item.innerHTML =
+    '<div class="pack-num">' + displayNum + '</div>' +
+    '<div class="pack-info">' +
+      '<div class="pack-datetime">' + dt + '</div>' +
+      '<div class="pack-delta">+' + deltaH + 'h ' + sp + '</div>' +
+    '</div>' +
+    '<div class="pack-actions">' +
+      '<button class="pack-action-btn" onclick="event.stopPropagation();editPack(' + p.id + ')" title="Modifier">✎</button>' +
+      '<button class="pack-action-btn del" onclick="event.stopPropagation();deletePack(' + p.id + ')" title="Supprimer">✕</button>' +
+    '</div>';
+  return item;
+}
+
 function renderList() {
   const sorted = [...packs].sort((a,b) => b.ts - a.ts); // newest first
   const list = document.getElementById('packList');
   list.innerHTML = '';
   const show = sorted.slice(0, 20);
   show.forEach((p, i) => {
-    const d = new Date(p.ts);
     const prev = sorted[i+1];
     const deltaH = prev ? ((p.ts - prev.ts) / 3600000).toFixed(1) : '–';
-    const item = document.createElement('div');
-    item.className = 'pack-item';
-    item.innerHTML = `
-      <div class="pack-num">${sorted.length - i}</div>
-      <div class="pack-info">
-        <div class="pack-datetime">${formatDate(d)}</div>
-        <div class="pack-delta">+${deltaH}h ${t('since_prev')}</div>
-      </div>
-      <div class="pack-actions">
-        <button class="pack-action-btn" onclick="event.stopPropagation();editPack(${p.id})" title="Modifier">✎</button>
-        <button class="pack-action-btn del" onclick="event.stopPropagation();deletePack(${p.id})" title="Supprimer">✕</button>
-      </div>
-    `;
-    list.appendChild(item);
+    // Sunday separator: insert ABOVE this entry if a Sunday midnight falls between this and the next (older)
+    if (prev && isSundayBoundary(p.ts, prev.ts)) {
+      list.appendChild(makeSundaySep());
+    }
+    list.appendChild(renderPackItem(p, sorted.length - i, deltaH));
   });
 }
 
@@ -2547,6 +2693,33 @@ function fullReset() {
   closeSettings();
 }
 
+
+// ===================== FULL HISTORY PANEL =====================
+function openFullHistory() {
+  history.pushState({ panel: 'fullHistory' }, '');
+  const panel = document.getElementById('fullHistoryPanel');
+  panel.classList.add('open');
+  renderFullHistory();
+}
+
+function closeFullHistory() {
+  document.getElementById('fullHistoryPanel').classList.remove('open');
+}
+
+function renderFullHistory() {
+  const sorted = [...packs].sort((a,b) => b.ts - a.ts); // newest first
+  const list = document.getElementById('fullHistoryList');
+  list.innerHTML = '';
+  sorted.forEach((p, i) => {
+    const prev = sorted[i+1];
+    const deltaH = prev ? ((p.ts - prev.ts) / 3600000).toFixed(1) : '–';
+    if (prev && isSundayBoundary(p.ts, prev.ts)) {
+      list.appendChild(makeSundaySep());
+    }
+    list.appendChild(renderPackItem(p, sorted.length - i, deltaH));
+  });
+}
+
 // ===================== INIT =====================
 currentLang = detectLang();
 load();
@@ -2558,6 +2731,8 @@ update();
 window.addEventListener('popstate', function(e) {
   if (document.getElementById('manualPanel').classList.contains('open')) {
     closeManual();
+  } else if (document.getElementById('fullHistoryPanel').classList.contains('open')) {
+    closeFullHistory();
   } else if (document.getElementById('statsPanel').classList.contains('open')) {
     closeStats();
   } else if (document.getElementById('settingsPanel').classList.contains('open')) {
@@ -3242,6 +3417,7 @@ function triggerInstall() {
     </div>
     <div class="manual-body" id="manualBody"></div>
   </div>
+
 </div>
 
 </body>
